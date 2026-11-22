@@ -14,6 +14,7 @@
 //   5. Return as OpenAI chat/completions format
 
 import { BaseExecutor } from "../base.js";
+import { resolveSystemChromeExecutable, launchChromiumWithFallback } from "../browserExecutableCheck.js";
 import { SSE_HEADERS_NO_BUFFER } from "../../utils/sseConstants.js";
 import { sseChunk } from "../../utils/sse.js";
 import { loadRuntimeDep } from "../../services/lazyRuntime.js";
@@ -35,6 +36,15 @@ const DEFAULT_MODEL_ID = "ge/gemini-3.5-flash";
 
 const AIPASS_USER_AGENT =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36";
+
+async function launchAipassChromium(options) {
+  const { chromium } = await loadRuntimeDep("playwright-core");
+  const executablePath = resolveSystemChromeExecutable();
+  return launchChromiumWithFallback(chromium, {
+    ...options,
+    ...(executablePath ? { executablePath } : {}),
+  });
+}
 
 function formatChatCompletion(content, model, finishReason = "stop") {
   return {
@@ -145,13 +155,7 @@ export class AipassWebExecutor extends BaseExecutor {
     let page = null;
 
     try {
-      browser = await acquireAipassBrowser(
-        async (opts) => {
-          const { chromium } = await loadRuntimeDep("playwright-core");
-          return chromium.launch(opts);
-        },
-        log
-      );
+      browser = await acquireAipassBrowser(launchAipassChromium, log);
 
       const { page: p, context: ctx } = await openAipassEnterprisePage(browser, log);
       page = p;
