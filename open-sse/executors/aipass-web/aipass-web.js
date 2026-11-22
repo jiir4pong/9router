@@ -97,7 +97,7 @@ async function openAipassEnterprisePage(browser, log) {
   return { browser, context, page };
 }
 
-export class AipassWebExecutor {
+export class AipassWebExecutor extends BaseExecutor {
   constructor(provider, config) {
     super(provider, config);
     this.provider = provider;
