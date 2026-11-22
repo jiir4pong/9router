@@ -13,21 +13,21 @@
 //   4. Wait for assistant reply in the DOM
 //   5. Return as OpenAI chat/completions format
 
-import { BaseExecutor } from "./base.js";
-import { SSE_HEADERS_NO_BUFFER } from "../utils/sseConstants.js";
-import { sseChunk } from "../utils/sse.js";
-import { loadRuntimeDep } from "../services/lazyRuntime.js";
+import { BaseExecutor } from "../base.js";
+import { SSE_HEADERS_NO_BUFFER } from "../../utils/sseConstants.js";
+import { sseChunk } from "../../utils/sse.js";
+import { loadRuntimeDep } from "../../services/lazyRuntime.js";
 import {
   acquireAipassBrowser,
   releaseAipassBrowser,
-} from "./aipass-web/browserLease.js";
-import { waitForAipassReply } from "./aipass-web/domCapture.js";
+} from "./browserLease.js";
+import { waitForAipassReply } from "./domCapture.js";
 import {
   checkAipassWebUnsupportedControls,
   AIPASS_WEB_UNSUPPORTED_CONTROL_CODE,
-} from "./aipass-web/capabilities.js";
-import { prepareToolMessages, buildToolAwareResult } from "../translator/webTools.js";
-import { buildToolModeResponse } from "./chatgptWebTools.js";
+} from "./capabilities.js";
+import { prepareToolMessages, buildToolAwareResult } from "../../translator/webTools.js";
+import { buildToolModeResponse } from "../chatgptWebTools.js";
 
 const AIPASS_URL = "https://de.aipass.net";
 const AIPASS_GE_OPEN = `${AIPASS_URL}/ge/open`;
