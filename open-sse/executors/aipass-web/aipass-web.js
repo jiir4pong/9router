@@ -103,7 +103,17 @@ export class AipassWebExecutor extends BaseExecutor {
     this.provider = provider;
   }
 
-  async execute({ model, body, stream, credentials, signal, log, proxyOptions = null }) {
+  async execute(options) {
+    const response = await this.#executeRequest(options);
+    return {
+      response,
+      url: AIPASS_GE_OPEN,
+      headers: {},
+      transformedBody: options.body,
+    };
+  }
+
+  async #executeRequest({ model, body, stream, credentials, signal, log, proxyOptions = null }) {
     // Reject controls the browser UI cannot honor
     const violation = checkAipassWebUnsupportedControls(body);
     if (violation) {
