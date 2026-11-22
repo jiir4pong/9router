@@ -17,10 +17,7 @@ import { GrokWebExecutor } from "./grok-web.js";
 import { GrokCliExecutor } from "./grok-cli.js";
 import { PerplexityWebExecutor } from "./perplexity-web.js";
 import { DeepSeekWebExecutor } from "./deepseek-web.js";
-<<<<<<< HEAD
-=======
-import { AipassWebExecutor } from "./aipass-web.js";
->>>>>>> 543966ef (Initial commit for aipass-patch)
+import { AipassWebExecutor } from "./aipass-web/aipass-web.js";
 import { GeminiWebExecutor } from "./gemini-web.js";
 import { MuseWebExecutor } from "./muse-web.js";
 import { VeoAiFreeWebExecutor } from "./veoaifree-web.js";
@@ -64,10 +61,7 @@ const executors = {
   gb: new GrokCliExecutor(), // Alias (Grok Build)
   "perplexity-web": new PerplexityWebExecutor(),
   "deepseek-web": new DeepSeekWebExecutor(),
-<<<<<<< HEAD
-=======
   "aipass-web": new AipassWebExecutor(),
->>>>>>> 543966ef (Initial commit for aipass-patch)
   "gemini-web": new GeminiWebExecutor(),
   "muse-web": new MuseWebExecutor(),
   "veoaifree-web": new VeoAiFreeWebExecutor(),
@@ -130,10 +124,7 @@ export { GrokWebExecutor } from "./grok-web.js";
 export { GrokCliExecutor } from "./grok-cli.js";
 export { PerplexityWebExecutor } from "./perplexity-web.js";
 export { DeepSeekWebExecutor } from "./deepseek-web.js";
-<<<<<<< HEAD
-=======
-export { AipassWebExecutor } from "./aipass-web.js";
->>>>>>> 543966ef (Initial commit for aipass-patch)
+export { AipassWebExecutor } from "./aipass-web/aipass-web.js";
 export { GeminiWebExecutor } from "./gemini-web.js";
 export { MuseWebExecutor } from "./muse-web.js";
 export { ChatGptWebExecutor } from "./chatgpt-web.js";
