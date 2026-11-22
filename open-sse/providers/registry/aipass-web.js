@@ -13,7 +13,7 @@ export default {
   },
   category: "webCookie",
   authType: "cookie",
-  serviceKinds: ["chat"],
+  serviceKinds: ["llm"],
   authHint:
     "Log in to https://de.aipass.net first. The executor opens de.aipass.net/ge/open in a real browser " +
     "so your existing session cookie stays inside the browser — nothing is read or forwarded out.",
